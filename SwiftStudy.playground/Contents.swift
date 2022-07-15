@@ -248,4 +248,3 @@ var airportsShorter = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 
 airports["LHR"] = "London"
 print(airports)
-
