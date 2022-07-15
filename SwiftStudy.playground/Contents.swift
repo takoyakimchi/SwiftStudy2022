@@ -269,3 +269,5 @@ for (airportCode, airportName) in airports {
 // Dictionary --> Array
 let airportCodes = [String](airports.keys)
 let airportNames = [String](airports.values)
+
+print()
