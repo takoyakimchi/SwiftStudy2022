@@ -248,3 +248,24 @@ var airportsShorter = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 
 airports["LHR"] = "London"
 print(airports)
+
+// updateValue method: 키가 없으면 설정하고 있으면 update 하기
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+    print("The old value for DUB was \(oldValue)")
+}
+
+// Dictionary -> removing value
+if let removedValue = airports.removeValue(forKey: "DUB") {
+    print("Removed value is \(removedValue)")
+} else {
+    print("There is no value for DUB")
+}
+
+// Iterating over a Dictionary
+for (airportCode, airportName) in airports {
+    print("Code: \(airportCode), Name: \(airportName)")
+}
+
+// Dictionary --> Array
+let airportCodes = [String](airports.keys)
+let airportNames = [String](airports.values)
