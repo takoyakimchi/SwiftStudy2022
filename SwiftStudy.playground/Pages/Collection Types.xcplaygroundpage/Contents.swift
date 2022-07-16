@@ -270,4 +270,3 @@ for (airportCode, airportName) in airports {
 let airportCodes = [String](airports.keys)
 let airportNames = [String](airports.values)
 
-print()
