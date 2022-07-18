@@ -28,6 +28,7 @@ reversedNames = names.sorted(by: {(s1: String, s2: String) -> Bool in
 
 // Inferring Type From Context 자료형 추론?
 reversedNames = names.sorted(by: {s1, s2 in return s1 > s2}) // 이렇게 인자로서 넘겨주는 경우에는 거의 추론이 가능
+// sorted가 이미 String, String -> Bool을 요구하고 있기 때문에 따로 타입을 지정해 줄 필요가 없음
 
 // Single Expression 인 경우에는 아래와 같이 implicit return이 가능함
 reversedNames = names.sorted(by: { s1, s2 in s1 > s2 })
