@@ -191,7 +191,7 @@ func chooseStepFunction(backward: Bool) -> (Int) -> Int {
     return backward ? stepBackward : stepForward
 }
 
-var currentValue = 3
+var currentValue = 5
 let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
 
 print("Counting to zero:")

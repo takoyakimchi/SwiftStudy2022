@@ -4,5 +4,6 @@
         <page name='Control Flow'/>
         <page name='Collection Types'/>
         <page name='Functions'/>
+        <page name='Closures'/>
     </pages>
 </playground>
