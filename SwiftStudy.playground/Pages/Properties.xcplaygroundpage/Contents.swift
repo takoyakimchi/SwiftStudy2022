@@ -206,3 +206,107 @@ print(mixedRectangle.height)
 
 mixedRectangle.width = 100
 print(mixedRectangle.width)
+
+@propertyWrapper
+struct SmallNumberNew {
+    private var number: Int
+    private(set) var projectedValue: Bool
+    
+    var wrappedValue: Int {
+        get { return number }
+        set {
+            if newValue > 12 {
+                number = 12
+                projectedValue = true
+            } else {
+                number = newValue
+                projectedValue = false
+            }
+        }
+    }
+    
+    init() {
+        self.number = 0
+        self.projectedValue = false
+    }
+}
+
+struct SomeStructure {
+    @SmallNumberNew var someNumber: Int
+}
+
+var someStructure = SomeStructure()
+someStructure.someNumber = 4
+print(someStructure.$someNumber)
+
+someStructure.someNumber = 55
+print(someStructure.$someNumber)
+
+// 전역변수 지역변수
+// 전역 변수와 상수는 항상 lazy하게 계산됨.
+// 지역 변수와 상수는 절대 lazy하게 계산되지 않음.
+func someFunction() {
+    @SmallNumber var myNum: Int
+    myNum = 10
+    myNum = 24
+    print(myNum)
+}
+
+someFunction()
+
+// Type Properties
+// instance가 아니고 type 자체에 속하는 프로퍼티이며 단 한 개만 존재 -> 모든 인스턴스가 사용하는 공통된 값을 정의할 때 유용
+struct SomeStructureNew {
+    static var storedTypeProperty = "Some value."
+    static var computedTypeProperty: Int {
+        return 1
+    }
+}
+
+enum SomeEnumeration {
+    static var storedTypeProperty = "Some value."
+    static var computedTypeProperty: Int {
+        return 6
+    }
+}
+
+class SomeClass {
+    static var storedTypeProperty = "Some value."
+    static var computedTypeProperty: Int {
+        return 27
+    }
+    class var overrideableComputedTypeProperty: Int {
+        return 107
+    }
+}
+
+print(SomeStructureNew.storedTypeProperty) // type property -> 이와 같이 Type 이름에 dot syntax 붙여서 쓴다
+SomeStructureNew.storedTypeProperty = "Another value."
+print(SomeStructureNew.storedTypeProperty)
+
+// 오디오 채널 예시
+struct AudioChannel {
+    static let thresholdLevel = 10
+    static var maxInputLevelForAllChannels = 0
+    var currentLevel: Int = 0 {
+        didSet {
+            if currentLevel > AudioChannel.thresholdLevel {
+                currentLevel = AudioChannel.thresholdLevel
+            }
+            if currentLevel > AudioChannel.maxInputLevelForAllChannels {
+                AudioChannel.maxInputLevelForAllChannels = currentLevel
+            }
+        }
+    }
+}
+
+var leftChannel = AudioChannel()
+var rightChannel = AudioChannel()
+
+leftChannel.currentLevel = 7
+print(leftChannel.currentLevel)
+print(AudioChannel.maxInputLevelForAllChannels)
+
+rightChannel.currentLevel = 11
+print(rightChannel.currentLevel)
+print(AudioChannel.maxInputLevelForAllChannels)
