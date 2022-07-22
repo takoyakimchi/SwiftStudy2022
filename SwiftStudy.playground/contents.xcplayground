@@ -7,5 +7,6 @@
         <page name='Closures'/>
         <page name='Enumerations'/>
         <page name='Structures and Classes'/>
+        <page name='Properties'/>
     </pages>
 </playground>
