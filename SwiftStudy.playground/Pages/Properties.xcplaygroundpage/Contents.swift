@@ -254,7 +254,7 @@ func someFunction() {
 
 someFunction()
 
-// Type Properties
+// Type Properties 타입 프로퍼티
 // instance가 아니고 type 자체에 속하는 프로퍼티이며 단 한 개만 존재 -> 모든 인스턴스가 사용하는 공통된 값을 정의할 때 유용
 struct SomeStructureNew {
     static var storedTypeProperty = "Some value."
